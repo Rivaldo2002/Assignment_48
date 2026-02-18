@@ -1,0 +1,436 @@
+/* =========================================
+   1. GLOBAL RESET & BASIC
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #141414; /* Background Gelap Utama */
+  color: #f5f5f5;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================
+   2. HEADER / NAVBAR
+   ========================================= */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 4%;
+  background-color: #000000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.header h1 {
+  color: #e50914;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #e5e5e5;
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #b3b3b3;
+}
+
+.logout-btn {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c10811;
+}
+
+/* =========================================
+   3. AUTH (LOGIN & REGISTER)
+   ========================================= */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bca1-07e3f8eb14b8/pr/ID-en-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-form {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 60px 68px 40px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-form h2 {
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+}
+
+.auth-form input:focus {
+  background-color: #454545;
+  outline: none;
+}
+
+.cta-btn {
+  width: 100%;
+  padding: 16px;
+  background-color: #e50914;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 24px;
+}
+
+.error-box {
+  background-color: #e87c03;
+  color: white;
+  padding: 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* =========================================
+   4. HOME & MOVIE CARD
+   ========================================= */
+.home-container {
+  padding: 40px 4%;
+}
+
+.section-title {
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #e5e5e5;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px 20px;
+  padding-bottom: 40px;
+}
+
+.movie-card-link {
+  display: block;
+}
+
+.movie-card {
+  background-color: #181818;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.movie-card-link:hover .movie-card {
+  transform: scale(1.05);
+  border-color: #333;
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.movie-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-rating-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #000;
+  z-index: 2;
+}
+
+.movie-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  background-color: #181818;
+}
+
+.movie-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.year {
+  font-size: 13px;
+  color: #808080;
+  border: 1px solid #404040;
+  padding: 2px 6px;
+  border-radius: 2px;
+  width: fit-content;
+}
+
+/* =========================================
+   5. USER LIST / TABLE (BARU DITAMBAHKAN)
+   ========================================= */
+.user-list-container {
+  padding: 40px 4%;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #181818; /* Warna tabel gelap */
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+th {
+  background-color: #000000;
+  color: #e50914; /* Merah untuk Header Tabel */
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+td {
+  color: #ccc;
+}
+
+tr:hover {
+  background-color: #222; /* Efek hover baris tabel */
+}
+
+/* =========================================
+   6. MOVIE DETAIL HERO
+   ========================================= */
+.detail-hero {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center top;
+  display: flex;
+  align-items: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0.4) 100%),
+              linear-gradient(to top, #141414 0%, transparent 50%);
+  z-index: 1;
+}
+
+.detail-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.detail-content {
+  display: flex;
+  gap: 50px;
+  align-items: flex-end;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.detail-poster {
+  width: 300px;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.detail-info {
+  flex: 1;
+  color: white;
+  padding-bottom: 20px;
+}
+
+.detail-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  line-height: 1.1;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  color: #e5e5e5;
+}
+
+.rating-box {
+  background-color: #333;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.detail-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  color: #d1d1d1;
+  margin-bottom: 40px;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary {
+  background-color: #e50914;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .detail-hero { align-items: flex-start; padding-top: 80px; }
+  .detail-content { flex-direction: column; align-items: center; text-align: center; }
+  .detail-poster { width: 200px; }
+  .detail-title { font-size: 2.5rem; }
+  .detail-meta { justify-content: center; flex-wrap: wrap; }
+  .action-buttons { justify-content: center; }
+}
+
+/* Styling Tambahan untuk Form Tambah Film */
+.custom-textarea {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  resize: vertical; /* User bisa tarik tinggi textarea */
+}
+
+.custom-textarea:focus {
+  background-color: #454545;
+  outline: none;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #333;
+  border: none;
+  border-radius: 4px;
+  color: white; /* Warna teks default */
+  font-size: 16px;
+  appearance: none; /* Hilangkan panah default browser yang jelek */
+  cursor: pointer;
+}
+
+.custom-select:focus {
+  background-color: #454545;
+  outline: none;
+}
